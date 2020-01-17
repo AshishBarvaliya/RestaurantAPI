@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DTOModels\Restuarant.DTOModels.csproj" />
     <ProjectReference Include="..\Restaurant.Helpers\Restaurant.Helpers.csproj" />
     <ProjectReference Include="..\Restaurant.Services\Restaurant.Services.csproj" />
   </ItemGroup>

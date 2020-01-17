@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using DTOModels;
+﻿using DTOModels;
 using Restaurant.Entity;
-using Restaurant.Services;
 using System;
 using System.Collections.Generic;
 

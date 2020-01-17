@@ -39,7 +39,7 @@ namespace Restaurant.API.Controllers
         [HttpGet("{ratingId}")]
         public async Task<ActionResult<RatingsDto>> GetRating(int restaurantId,int ratingId)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false))
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false)
             {
                 return NotFound();
             }
@@ -52,39 +52,39 @@ namespace Restaurant.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<RatingsDto> AddRatings(int restaurantId, RatingsDto ratingsDto)
+        public async  Task<ActionResult<RatingsDto>> AddRatings(int restaurantId, RatingsDto ratingsDto)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false))
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false)
             {
                 return NotFound();
             }
             var ratings = _mapper.Map<Ratings>(ratingsDto);
             ratings = _restaurantRepository.AddRating(restaurantId,ratings);
-            _restaurantRepository.Save();
+
             var _ratingsDto = _mapper.Map<RatingsDto>(ratings);
             return CreatedAtRoute("GetRatings", new { restaurantId = _ratingsDto.Id },
                                                         _ratingsDto);
         }
         
         [HttpPut("{ratingId}")]
-        public ActionResult UpdateRatings(int restaurantId, int ratingId, RatingsDto ratings)
+        public async Task<ActionResult> UpdateRatings(int restaurantId, int ratingId, RatingsDto ratings)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false)
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false
                 && _restaurantRepository.GetRatings(restaurantId, ratingId) == null)
                 return NotFound();
 
-            _restaurantRepository.UpdateRatings(restaurantId, ratingId, ratings);
+            await _restaurantRepository.UpdateRatings(restaurantId, ratingId, ratings);
             _restaurantRepository.Save();
             return Ok();
         }
         [HttpDelete("{ratingId}")]
-        public ActionResult DeleteRatingsForRestaurant(int restaurantId, int ratingId)
+        public async Task<ActionResult> DeleteRatingsForRestaurant(int restaurantId, int ratingId)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false)
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false
                 && _restaurantRepository.GetRatings(restaurantId, ratingId) == null)
                 return NotFound();
 
-            _restaurantRepository.DeleteRating(ratingId);
+            await _restaurantRepository.DeleteRating(ratingId);
             _restaurantRepository.Save();
             return Ok();
         }

@@ -10,8 +10,8 @@ namespace Restaurant.MapperProfiles
         {
             CreateMap<Ratings, RatingsDto>();
             CreateMap<RatingsDto, Ratings>();
-            CreateMap<RatingsDtoForUpdate, Ratings>();
-            CreateMap<Ratings, RatingsDtoForUpdate>();
+            //CreateMap<RatingsDtoForUpdate, Ratings>();
+            //CreateMap<Ratings, RatingsDtoForUpdate>();
         }
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Restaurant.API</name>
+    </assembly>
+    <members>
+        <member name="M:Restaurant.API.Controllers.RestaurantController.GetRestaurant(System.Int32)">
+            <summary>
+            Get a Restaurant by RestaurantId
+            </summary>
+            <param name="restaurantId">The id of Restaurant, that you want to get </param>
+            <returns>You will get all info of restaurant</returns>
+        </member>
+    </members>
+</doc>

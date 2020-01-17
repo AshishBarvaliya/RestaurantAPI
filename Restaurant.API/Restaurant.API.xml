@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Restaurant.API</name>
+    </assembly>
+    <members>
+        <member name="M:Restaurant.API.Controllers.RestaurantController.GetRestaurant(System.Int32)">
+            <summary>
+            Get a Restaurant by RestaurantId
+            </summary>
+            <param name="restaurantId">The id of Restaurant, that you want to get </param>
+            <returns>You will get all info of restaurant</returns>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Id">
+            <summary>
+            Unique Id of Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Name">
+            <summary>
+            Name of Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Street">
+            <summary>
+            Street name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Locality">
+            <summary>
+            Locality name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.City">
+            <summary>
+            City name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.State">
+            <summary>
+            State name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Postcode">
+            <summary>
+            Postcode of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Lat">
+            <summary>
+            Latitude of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Lng">
+            <summary>
+            Longitude of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Ratings">
+            <summary>
+            Ratings of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.API.DtoModels.RestaurantDto.CuisineTypes">
+            <summary>
+            Types of Cuisines serve by the Restaurant.
+            </summary>
+        </member>
+    </members>
+</doc>

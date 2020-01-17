@@ -51,28 +51,27 @@ namespace Restaurant.API.Controllers
         }
         
         [HttpPost]
-        public IActionResult AddCuisineType(int restaurantId, CuisineTypeDto cuisineTypeDto)
+        public async Task<IActionResult> AddCuisineType(int restaurantId, CuisineTypeDto cuisineTypeDto)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false))
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false)
             {
                 return NotFound();
             }
             var cuisineType = _mapper.Map<CuisineType>(cuisineTypeDto);
-            cuisineType = _restaurantRepository.AddCuisineType(restaurantId, cuisineType);
-            _restaurantRepository.Save();
+            _restaurantRepository.AddCuisineType(restaurantId, cuisineType);
             return Ok();
         }
 
         [HttpDelete("{cuisineId}")]
-        public IActionResult DeleteCuisineType(int restaurantId, int cuisineId)
+        public async Task<IActionResult> DeleteCuisineType(int restaurantId, int cuisineId)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false)
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false
                 && _restaurantRepository.GetCuisineTypes(restaurantId, cuisineId) == null)
             {
                 return NotFound();
             }
 
-            _restaurantRepository.DeleteCuisineType(cuisineId);
+            await _restaurantRepository.DeleteCuisineType(cuisineId);
             _restaurantRepository.Save();
             return Ok();
         }

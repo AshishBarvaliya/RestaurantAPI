@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Restaurant.Services\Restaurant.Services.csproj" />
+    <ProjectReference Include="..\DTOModels\Restuarant.DTOModels.csproj" />
+    <ProjectReference Include="..\Restaurant.Entity\Restaurant.Entity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -55,23 +55,23 @@ namespace Restaurant.API.Controllers
                                                         _restaurantDto);
         }
         [HttpPut("{restaurantId}")]
-        public ActionResult UpdateRestaurant(int restaurantId, RestaurantDtoForUpdate restaurant)
+        public async Task<ActionResult> UpdateRestaurant(int restaurantId, RestaurantDtoForUpdate restaurant)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false))
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false)
                 return NotFound();
 
-            _restaurantRepository.UpdateRestaurant(restaurantId, restaurant);
+            await _restaurantRepository.UpdateRestaurant(restaurantId, restaurant);
             _restaurantRepository.Save();
             return Ok();
         }
         
         [HttpDelete("{restaurantId}")]
-        public ActionResult DeleteRestaurant(int restaurantId)
+        public async Task<ActionResult> DeleteRestaurant(int restaurantId)
         {
-            if (_restaurantRepository.RestaurantExists(restaurantId) == Task.FromResult(false))
+            if (await _restaurantRepository.RestaurantExists(restaurantId) == false)
                 return NotFound();
 
-            _restaurantRepository.DeleteRestaurant(restaurantId);
+            await _restaurantRepository.DeleteRestaurant(restaurantId);
             _restaurantRepository.Save();
             return Ok();
         }

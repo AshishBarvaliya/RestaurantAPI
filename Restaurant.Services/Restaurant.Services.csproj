@@ -9,9 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DTOModels\Restuarant.DTOModels.csproj" />
     <ProjectReference Include="..\Restaurant.DbContext\Restaurant.DbContext.csproj" />
-    <ProjectReference Include="..\Restaurant.Entity\Restaurant.Entity.csproj" />
   </ItemGroup>
 
 </Project>

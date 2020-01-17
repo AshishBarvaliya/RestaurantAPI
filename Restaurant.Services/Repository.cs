@@ -34,6 +34,7 @@ namespace Restaurant.Services
         {
             rating.RestaurantId = restaurantId;
             context.Ratings.Add(rating);
+            Save();
             return rating;
         }
         public CuisineType AddCuisineType(int restaurantId, CuisineType cuisineType)
@@ -44,16 +45,15 @@ namespace Restaurant.Services
             if (typeAvailablity == null)
             {
                 context.CuisineTypes.Add(cuisineType);
-                Save();
+                context.SaveChanges();
                 cuisineId = cuisineType.Id;
-                Console.WriteLine("ctid "+ cuisineId);
             }
             else 
             {
                 cuisineId = typeAvailablity.Id;
             }
             AddToRestaurantCuisineTable(cuisineId, restaurantId);
-            return context.CuisineTypes.FirstOrDefault(c => c.Id ==cuisineId);
+            return context.CuisineTypes.FirstOrDefault(c => c.Id == cuisineId);
         }
         private void AddToRestaurantCuisineTable(int cuisineId,int restaurantId)
         {
@@ -64,7 +64,7 @@ namespace Restaurant.Services
                 restaurantCuisines.CuisineTypeId = cuisineId;
                 restaurantCuisines.RestaurantId = restaurantId;
                 context.RestaurantCuisines.Add(restaurantCuisines);
-                Save();
+                context.SaveChanges();
             }
         }
 
@@ -162,7 +162,7 @@ namespace Restaurant.Services
         }
         public async Task DeleteRestaurant(int restaurantId)
         {
-            var restaurant = await context.Restaurants.FirstOrDefaultAsync(r => r.Id == restaurantId);
+            var restaurant = await GetRestaurants(restaurantId);
             context.Restaurants.Remove(restaurant);
         }
         public async Task DeleteCuisineType(int cuisineId)
