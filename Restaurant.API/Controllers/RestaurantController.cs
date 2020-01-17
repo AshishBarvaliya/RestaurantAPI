@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DTOModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Services;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.API.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("api/restaurants")]
     public class RestaurantController : ControllerBase
@@ -26,7 +28,14 @@ namespace Restaurant.API.Controllers
                     throw new ArgumentNullException(nameof(mapper));
         }
 
+        /// <summary>
+        /// Get Restaurant by an Id.
+        /// </summary>
+        /// <param name="restaurantId">The Id of the restaurant you want to get</param>
+        /// <returns>details of the restaurant</returns>
         [HttpGet("{restaurantId}",Name ="GetRestaurant")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<RestaurantDto>> GetRestaurant(int restaurantId)
         {
             var restaurantFromRepo = await _restaurantRepository.GetRestaurants(restaurantId);
@@ -36,15 +45,33 @@ namespace Restaurant.API.Controllers
             }
             return Ok(_mapper.Map<RestaurantDto>(restaurantFromRepo));
         }
+
+        /// <summary>
+        /// Get all Restaurants.
+        /// </summary>
+        /// <param name="state"> filter parameter (filter by State)[optional]</param>
+        /// <param name="searchQuery">search query [optional]</param>
+        /// <returns>details of restaurants</returns>
         [HttpGet]
         [HttpHead]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetRestaurants(
                                 [FromQuery] string state, string searchQuery )
         {
             var restaurantsFromRepo = await _restaurantRepository.GetRestaurants(state, searchQuery);
             return Ok(_mapper.Map<IEnumerable<RestaurantDto>>(restaurantsFromRepo));
         }
+        
+        /// <summary>
+        /// Add a restaurant
+        /// </summary>
+        /// <param name="restaurantDto">model of restaurant with all entities </param>
+        /// <returns>added restaurant</returns>
         [HttpPost]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public IActionResult AddRestaurant(RestaurantDto restaurantDto)
         {
             var restaurant = _mapper.Map<Entity.Restaurant>(restaurantDto);            
@@ -54,7 +81,18 @@ namespace Restaurant.API.Controllers
             return CreatedAtRoute("GetRestaurant",new { restaurantId = _restaurantDto.Id},
                                                         _restaurantDto);
         }
+        
+        /// <summary>
+        /// update details a restaurant
+        /// </summary>
+        /// <param name="restaurantId">id of restaurant that you want to update</param>
+        /// <param name="restaurant">new value of restaurant</param>
+        /// <returns>nothing</returns>
         [HttpPut("{restaurantId}")]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult> UpdateRestaurant(int restaurantId, RestaurantDtoForUpdate restaurant)
         {
             if (await _restaurantRepository.RestaurantExists(restaurantId) == false)
@@ -64,8 +102,15 @@ namespace Restaurant.API.Controllers
             _restaurantRepository.Save();
             return Ok();
         }
-        
+
+        /// <summary>
+        /// delete a restaurant
+        /// </summary>
+        /// <param name="restaurantId">id of restaurant that you want to delete</param>
+        /// <returns>nothing</returns>
         [HttpDelete("{restaurantId}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> DeleteRestaurant(int restaurantId)
         {
             if (await _restaurantRepository.RestaurantExists(restaurantId) == false)

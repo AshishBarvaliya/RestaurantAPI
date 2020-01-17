@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DTOModels
 {
+    /// <summary>
+    /// Restaurant(Dto) with address, ratings and cuisineTypes. 
+    /// </summary>
     public class RestaurantDto
     {
         /// <summary>
@@ -73,7 +76,7 @@ namespace DTOModels
         /// </summary>
         public ICollection<RatingsDto> Ratings { get; set; } = new List<RatingsDto>();
         /// <summary>
-        /// Types of Cuisines serve by the Restaurant.
+        /// Types of Cuisines serves by the Restaurant.
         /// </summary>
         public ICollection<CuisineTypeDto> CuisineTypes { get; set; } = new List<CuisineTypeDto>();
 

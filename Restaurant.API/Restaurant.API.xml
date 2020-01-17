@@ -4,67 +4,113 @@
         <name>Restaurant.API</name>
     </assembly>
     <members>
+        <member name="M:Restaurant.API.Controllers.CuisineTypesController.GetCuisineTypes(System.Int32)">
+            <summary>
+            get all cuisineTypes of restaurant serves.  
+            </summary>
+            <param name="restaurantId"> id of the restaurant</param>
+            <returns>all name cuisines</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.CuisineTypesController.GetOneCuisineType(System.Int32,System.Int32)">
+            <summary>
+            get a cuisine type of restaurant
+            </summary>
+            <param name="restaurantId"> id of the restaurant</param>
+            <param name="cuisineId">id of cuisinetype</param>
+            <returns>a cuisinetype</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.CuisineTypesController.AddCuisineType(System.Int32,DTOModels.CuisineTypeDto)">
+            <summary>
+            add new cuisine to restaurant
+            </summary>
+            <param name="restaurantId">id of restaurant</param>
+            <param name="cuisineTypeDto">cuisnine type that you want to add</param>
+            <returns>nothing</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.CuisineTypesController.DeleteCuisineType(System.Int32,System.Int32)">
+            <summary>
+            delete cuisine from restaurant
+            </summary>
+            <param name="restaurantId">id of restaurant</param>
+            <param name="cuisineId">cuisnine id that you want to delete</param>
+            <returns>nothing</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.RatingsController.GetRatings(System.Int32)">
+            <summary>
+            get all ratings of a restaurant.
+            </summary>
+            <param name="restaurantId"> id of restaurant</param>
+            <returns>ratings of the restaurant</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.RatingsController.GetRating(System.Int32,System.Int32)">
+            <summary>
+            get a rating of a restaurant.
+            </summary>
+            <param name="restaurantId"> id of restaurant</param>
+            <param name="ratingId">id of rating</param>
+            <returns>a rating of the restaurant</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.RatingsController.AddRatings(System.Int32,Restuarant.DTOModels.RatingsDto)">
+            <summary>
+            add rating of restaurant
+            </summary>
+            <param name="restaurantId">id of the restaurant</param>
+            <param name="ratingsDto"> new rating</param>
+            <returns>added rating</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.RatingsController.UpdateRatings(System.Int32,System.Int32,Restuarant.DTOModels.RatingsDto)">
+            <summary>
+            update a existing rating
+            </summary>
+            <param name="restaurantId">id of the restaurant</param>
+            <param name="ratingId">id of rating that you want to update</param>
+            <param name="ratings">new rating</param>
+            <returns>nothing</returns>
+        </member>
+        <member name="M:Restaurant.API.Controllers.RatingsController.DeleteRatingsForRestaurant(System.Int32,System.Int32)">
+            <summary>
+            delete a existing rating
+            </summary>
+            <param name="restaurantId">id of the restaurant</param>
+            <param name="ratingId">id of rating that you want to delete</param>
+            <returns>nothing</returns>
+        </member>
         <member name="M:Restaurant.API.Controllers.RestaurantController.GetRestaurant(System.Int32)">
             <summary>
-            Get a Restaurant by RestaurantId
+            Get Restaurant by an Id.
             </summary>
-            <param name="restaurantId">The id of Restaurant, that you want to get </param>
-            <returns>You will get all info of restaurant</returns>
+            <param name="restaurantId">The Id of the restaurant you want to get</param>
+            <returns>details of the restaurant</returns>
         </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Id">
+        <member name="M:Restaurant.API.Controllers.RestaurantController.GetRestaurants(System.String,System.String)">
             <summary>
-            Unique Id of Restaurant.
+            Get all Restaurants.
             </summary>
+            <param name="state"> filter parameter (filter by State)[optional]</param>
+            <param name="searchQuery">search query [optional]</param>
+            <returns>details of restaurants</returns>
         </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Name">
+        <member name="M:Restaurant.API.Controllers.RestaurantController.AddRestaurant(DTOModels.RestaurantDto)">
             <summary>
-            Name of Restaurant.
+            Add a restaurant
             </summary>
+            <param name="restaurantDto">model of restaurant with all entities </param>
+            <returns>added restaurant</returns>
         </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Street">
+        <member name="M:Restaurant.API.Controllers.RestaurantController.UpdateRestaurant(System.Int32,Restuarant.DTOModels.RestaurantDtoForUpdate)">
             <summary>
-            Street name of address of a Restaurant.
+            update details a restaurant
             </summary>
+            <param name="restaurantId">id of restaurant that you want to update</param>
+            <param name="restaurant">new value of restaurant</param>
+            <returns>nothing</returns>
         </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Locality">
+        <member name="M:Restaurant.API.Controllers.RestaurantController.DeleteRestaurant(System.Int32)">
             <summary>
-            Locality name of address of a Restaurant.
+            delete a restaurant
             </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.City">
-            <summary>
-            City name of address of a Restaurant.
-            </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.State">
-            <summary>
-            State name of address of a Restaurant.
-            </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Postcode">
-            <summary>
-            Postcode of address of a Restaurant.
-            </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Lat">
-            <summary>
-            Latitude of a Restaurant.
-            </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Lng">
-            <summary>
-            Longitude of a Restaurant.
-            </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.Ratings">
-            <summary>
-            Ratings of a Restaurant.
-            </summary>
-        </member>
-        <member name="P:Restuarant.API.DtoModels.RestaurantDto.CuisineTypes">
-            <summary>
-            Types of Cuisines serve by the Restaurant.
-            </summary>
+            <param name="restaurantId">id of restaurant that you want to delete</param>
+            <returns>nothing</returns>
         </member>
     </members>
 </doc>

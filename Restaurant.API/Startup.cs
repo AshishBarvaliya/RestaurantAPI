@@ -14,6 +14,8 @@ using Restaurant.Helpers;
 using Newtonsoft.Json.Serialization;
 using Restaurant.Services;
 using System.Configuration;
+using System.Reflection;
+using System.IO;
 
 namespace Restaurant.API
 {
@@ -32,8 +34,7 @@ namespace Restaurant.API
             services.AddControllers(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
-            })
-                .AddXmlDataContractSerializerFormatters();
+            });
 
             services.AddControllers()
                     .AddNewtonsoftJson( options =>
@@ -43,6 +44,24 @@ namespace Restaurant.API
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IRepository, Repository>();
+            services.AddSwaggerGen(setupAction =>
+            {
+                setupAction.SwaggerDoc(
+                    "RestaurantOpenAPISpecification",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "Restaurant API",
+                        Version = "1",
+                        Description = "Through this API you can access Restaurants with details.",
+                     });
+
+                var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+
+                setupAction.IncludeXmlComments(xmlCommentsFullPath);
+                setupAction.IncludeXmlComments(Configuration.GetConnectionString("Restaurant.DTOModels.xml"));
+
+            });
 
             services.AddDbContext<DbContext.DbContext>(options =>
             {
@@ -59,6 +78,15 @@ namespace Restaurant.API
             }
 
             app.UseRouting();
+            app.UseSwagger();
+            app.UseSwaggerUI(setupAction =>
+            {
+                setupAction.SwaggerEndpoint(
+                    "/swagger/RestaurantOpenAPISpecification/swagger.json",
+                    "Restaurant API");
+                setupAction.RoutePrefix = "";
+            });
+
 
             app.UseAuthorization();
 

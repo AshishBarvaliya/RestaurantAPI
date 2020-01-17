@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Restuarant.DTOModels</name>
+    </assembly>
+    <members>
+        <member name="T:DTOModels.CuisineTypeDto">
+             <summary>
+            name of cuisine which serves by restaurants 
+             </summary>
+        </member>
+        <member name="P:DTOModels.CuisineTypeDto.Id">
+            <summary>
+            cuisinetype id
+            </summary>
+        </member>
+        <member name="P:DTOModels.CuisineTypeDto.Type">
+            <summary>
+            name of cuisine 
+            </summary>
+        </member>
+        <member name="T:DTOModels.RestaurantDto">
+            <summary>
+            Restaurant(Dto) with address, ratings and cuisineTypes. 
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Id">
+            <summary>
+            Unique Id of Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Name">
+            <summary>
+            Name of Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Street">
+            <summary>
+            Street name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Locality">
+            <summary>
+            Locality name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.City">
+            <summary>
+            City name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.State">
+            <summary>
+            State name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Postcode">
+            <summary>
+            Postcode of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Lat">
+            <summary>
+            Latitude of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Lng">
+            <summary>
+            Longitude of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.Ratings">
+            <summary>
+            Ratings of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:DTOModels.RestaurantDto.CuisineTypes">
+            <summary>
+            Types of Cuisines serves by the Restaurant.
+            </summary>
+        </member>
+        <member name="T:Restuarant.DTOModels.RatingsDto">
+            <summary>
+            rating class with id and rating of a restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RatingsDto.Id">
+            <summary>
+            id of rating
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RatingsDto.Rating">
+            <summary>
+            rating of restaurant
+            </summary>
+        </member>
+        <member name="T:Restuarant.DTOModels.RestaurantDtoForUpdate">
+            <summary>
+            restaurant(update dto), get values from user to update resturant details. 
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.Name">
+            <summary>
+            Name of Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.Street">
+            <summary>
+            Street name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.Locality">
+            <summary>
+            Locality name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.City">
+            <summary>
+            City name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.State">
+            <summary>
+            State name of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.Postcode">
+            <summary>
+            Postcode of address of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.Lat">
+            <summary>
+            Latitude of a Restaurant.
+            </summary>
+        </member>
+        <member name="P:Restuarant.DTOModels.RestaurantDtoForUpdate.Lng">
+            <summary>
+            Longitude of a Restaurant.
+            </summary>
+        </member>
+    </members>
+</doc>
